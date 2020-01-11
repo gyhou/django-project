@@ -1,0 +1,26 @@
+<head>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel='stylesheet'>
+    <!-- Use Koala to open materialize folder and compile after changing components/color_variables file -->
+    <!-- then move the materialize file to css folder in static to change color scheme-->
+    <!-- <link href="{% static 'notes/css/materialize.css' %}" rel='stylesheet'> -->
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+    {% include "main/includes/navbar.html" %}
+    <!-- {% include "main/includes/messages.html" %} -->
+
+    <div class="container">
+        <br>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
