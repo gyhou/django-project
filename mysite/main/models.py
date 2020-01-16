@@ -6,8 +6,8 @@ from datetime import datetime
 
 class TutorialCategory(models.Model):
     category = models.CharField(max_length=200)
-    category_summary = models.CharField(max_length=200)
-    category_slug = models.CharField(max_length=200)
+    summary = models.CharField(max_length=200)
+    slug = models.CharField(max_length=200)
 
     class Meta:
         verbose_name_plural = "Categories"
