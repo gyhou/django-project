@@ -7,10 +7,13 @@ verify_ssl = true
 
 [packages]
 django = "*"
+gunicorn = "*"
+django-heroku = "*"
 python-decouple = "*"
 graphene-django = "*"
-django-tinymce4-lite = "*"
+django-cors-headers = "*"
 djangorestframework = "*"
+django-tinymce4-lite = "*"
 
 [requires]
 python_version = "3.7"
