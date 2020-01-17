@@ -12,11 +12,14 @@ def single_slug(request, single_slug):
     categories = [c.slug for c in TutorialCategory.objects.all()]
     if single_slug in categories:
         # Filter TutorialSeries.category to TutorialCategory.slug
-        matching_series = TutorialSeries.objects.filter(category__slug=single_slug)
+        # Get a list of objects
+        matching_series = TutorialSeries.objects.filter(
+            category__slug=single_slug)
         series_urls = {}
         for m in matching_series.all():
             # Filter Tutorial.series to TutorialSeries.series
-            part_one = Tutorial.objects.filter(series__series=m.series).earliest("published")
+            part_one = Tutorial.objects.filter(
+                series__series=m.series).earliest("published")
             series_urls[m] = part_one.slug
 
         return render(request,
@@ -25,13 +28,22 @@ def single_slug(request, single_slug):
 
     tutorials = [t.slug for t in Tutorial.objects.all()]
     if single_slug in tutorials:
-        return HttpResponse(f"{single_slug} is a tutorial!")
+        # get single object
+        this_tutorial = Tutorial.objects.get(slug=single_slug)
+        # tutorials_from_series = Tutorial.objects.filter(
+        #     series__series=this_tutorial.series).order_by("published")
+        tutorials_from_series = this_tutorial.series.tutorial_set.all().order_by("published")
+        this_tutorial_idx = list(tutorials_from_series).index(this_tutorial)
+        return render(request,
+                      "main/tutorial.html",
+                      {"tutorial": this_tutorial,
+                       "sidebar": tutorials_from_series,
+                        "this_tut_idx": this_tutorial_idx})
 
     return HttpResponse(f"{single_slug} does not correspond to anything.")
 
 
 def homepage(request):
-    # return HttpResponse("<strong>Django</strong> project")
     return render(request=request,
                   template_name='main/categories.html',
                   context={'categories': TutorialCategory.objects.all})
