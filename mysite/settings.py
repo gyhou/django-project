@@ -62,6 +62,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
 INSTALLED_APPS = [
     'tinymce',
+    'corsheaders',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
