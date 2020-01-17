@@ -1,13 +1,19 @@
 from django.db import models
 from datetime import datetime
+# from django.contrib.auth.models import User
 
 # Create your models here.
+# class BlockChain(models.Model):
 
+
+# class Miner(BlockChain):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class TutorialCategory(models.Model):
     category = models.CharField(max_length=200)
-    category_summary = models.CharField(max_length=200)
-    category_slug = models.CharField(max_length=200)
+    summary = models.CharField(max_length=200)
+    slug = models.CharField(max_length=200)
 
     class Meta:
         verbose_name_plural = "Categories"
